@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Department Academic Activity Dashboard</title>
+<title>Department ERP Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 body {
-    font-family: Arial;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: #f4f6f9;
+    background: #eef2f7;
     transition: 0.3s;
 }
 
-/* Header */
+/* HEADER */
 header {
-    background: #2a5298;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
     color: white;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
     position: relative;
 }
@@ -25,82 +27,169 @@ header {
 #darkToggle {
     position: absolute;
     right: 20px;
-    top: 15px;
-    padding: 5px 10px;
+    top: 20px;
+    padding: 8px;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
 }
 
-/* Search */
+/* SEARCH */
 .search-box {
     text-align: center;
-    margin: 15px;
+    margin: 20px;
 }
 
 .search-box input {
-    width: 80%;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
+    width: 85%;
+    max-width: 500px;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Dropdown */
-.dropdown {
-    margin: 10px;
-    display: block;
+/* GRID */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
+/* CARDS */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Glow effect */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+/* DROPDOWN */
 .dropbtn {
-    width: 90%;
-    margin: auto;
-    display: block;
+    width: 100%;
+    padding: 12px;
     background: #2a5298;
     color: white;
-    padding: 12px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
     text-align: left;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+.dropbtn:hover {
+    background: #1e3c72;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Animated dropdown */
 .dropdown-content {
-    display: none;
-    background: white;
-    width: 90%;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
 }
 
+.active {
+    max-height: 600px;
+}
+
+/* Links */
 .dropdown-content a {
     display: block;
     padding: 10px;
     text-decoration: none;
-    color: black;
+    color: #333;
+    position: relative;
+    transition: 0.25s;
 }
 
 .dropdown-content a:hover {
-    background: #f1f1f1;
+    background: #eaf1ff;
+    padding-left: 18px;
 }
 
-/* Show dropdown */
-.active {
-    display: block;
+.dropdown-content a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #4facfe;
+    transition: 0.3s;
 }
 
-/* Dark Mode */
+.dropdown-content a:hover::before {
+    width: 4px;
+}
+
+/* Charts */
+canvas {
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+canvas:hover {
+    transform: scale(1.02);
+}
+
+/* DARK MODE */
 .dark {
     background: #121212;
     color: white;
 }
 
-.dark .dropdown-content {
+.dark .card {
     background: #1e1e1e;
 }
 
-.dark a {
+.dark .dropdown-content a {
     color: white;
 }
 
+.dark .dropdown-content a:hover {
+    background: #2a2a2a;
+}
+
+.dark header {
+    background: linear-gradient(135deg, #232526, #414345);
+}
+
+/* Cursor */
+button, a {
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.96);
+}
 </style>
 </head>
 
@@ -115,101 +204,139 @@ header {
 <input type="text" id="searchInput" placeholder="🔍 Search links...">
 </div>
 
+<div class="dashboard">
+
 <!-- Department -->
-<div class="dropdown">
-<button class="dropbtn">Department Links</button>
+<div class="card">
+<button class="dropbtn">📁 Department</button>
 <div class="dropdown-content">
-<a href="https://drive.google.com/drive/folders/1Dhb3ucHoX5hX4uIoVuGSp98Rvt4xtjvD" target="_blank">Department Drive</a>
-<a href="https://docs.google.com/spreadsheets/d/1VKUBx6vxHK1NHdC_artF6CeBkC39tSLQ/edit" target="_blank">Faculty Profile</a>
-<a href="https://sites.google.com/jainuniversity.ac.in/iiaem-faculty/home" target="_blank">Faculty Website</a>
-<a href="https://sites.google.com/jainuniversity.ac.in/iiaem-students/home" target="_blank">Student Website</a>
+<a href="https://drive.google.com/drive/folders/1Dhb3ucHoX5hX4uIoVuGSp98Rvt4xtjvD">Department Drive</a>
+<a href="https://docs.google.com/spreadsheets/d/1VKUBx6vxHK1NHdC_artF6CeBkC39tSLQ/edit">Faculty Profile</a>
+<a href="https://sites.google.com/jainuniversity.ac.in/iiaem-faculty/home">Faculty Website</a>
+<a href="https://sites.google.com/jainuniversity.ac.in/iiaem-students/home">Student Website</a>
 </div>
 </div>
 
 <!-- ERP -->
-<div class="dropdown">
-<button class="dropbtn">ERP & Marks Entry</button>
+<div class="card">
+<button class="dropbtn">💻 ERP & Marks</button>
 <div class="dropdown-content">
-<a href="https://erpfet.jainuniversity.ac.in/" target="_blank">ERP (2nd Sem)</a>
-<a href="https://jained.jgianveshana.com/" target="_blank">ERP (4/6/8 Sem)</a>
-<a href="https://drive.google.com/open?id=1UZk8zfFwruBkOlykHps-dmvaAFr2smRQ" target="_blank">IA Marks Entry</a>
+<a href="https://erpfet.jainuniversity.ac.in/">ERP 2nd Sem</a>
+<a href="https://jained.jgianveshana.com/">ERP Higher Sem</a>
+<a href="https://drive.google.com/open?id=1UZk8zfFwruBkOlykHps-dmvaAFr2smRQ">IA Marks Entry</a>
 </div>
 </div>
 
 <!-- Academic -->
-<div class="dropdown">
-<button class="dropbtn">Academic Tracking</button>
+<div class="card">
+<button class="dropbtn">📚 Academic</button>
 <div class="dropdown-content">
-<a href="https://drive.google.com/drive/folders/1LU0-9Dpi8WJZ0H1re0eY1ahyrFdKYWVt" target="_blank">Teachers Diary</a>
-<a href="https://drive.google.com/open?id=1qY5Y2gfw0tGJAOwr48DnUOsmMacVs_gf" target="_blank">Assignment & MCQ</a>
-<a href="https://drive.google.com/open?id=19VXbS9a73CnPZoz009ufbrAFjJn1HvKa" target="_blank">IA Schedule</a>
-<a href="https://drive.google.com/open?id=14gqetKrTR2kLoQYzMF2JvnZcQUdfJx8i" target="_blank">Remedial Classes</a>
-<a href="https://drive.google.com/open?id=1sQKlXmBH3NWDXZdBdR4R_zjeKpbd741i" target="_blank">Slow Learners</a>
-<a href="https://drive.google.com/open?id=1-_wLZApixZ9yjvVM_Cyc3lgklBpZIeNN" target="_blank">Long Absentees</a>
-<a href="https://drive.google.com/open?id=1MktqvYvYJMC192JjhEVT4_BHtvrGSfVidzFgY2lFJCo" target="_blank">CA Status (2nd)</a>
-<a href="https://drive.google.com/open?id=17Zzf1DFKPIFyZNKTsrNw5MHbvJnzz1kVkFo9a8Ry-rQ" target="_blank">CA Status (4/6/8)</a>
+<a href="https://drive.google.com/drive/folders/1LU0-9Dpi8WJZ0H1re0eY1ahyrFdKYWVt">Teachers Diary</a>
+<a href="https://drive.google.com/open?id=1qY5Y2gfw0tGJAOwr48DnUOsmMacVs_gf">Assignment & MCQ</a>
+<a href="https://drive.google.com/open?id=19VXbS9a73CnPZoz009ufbrAFjJn1HvKa">IA Schedule</a>
+<a href="https://drive.google.com/open?id=14gqetKrTR2kLoQYzMF2JvnZcQUdfJx8i">Remedial</a>
+<a href="https://drive.google.com/open?id=1sQKlXmBH3NWDXZdBdR4R_zjeKpbd741i">Slow Learners</a>
+<a href="https://drive.google.com/open?id=1-_wLZApixZ9yjvVM_Cyc3lgklBpZIeNN">Long Absentees</a>
+<a href="https://drive.google.com/open?id=1MktqvYvYJMC192JjhEVT4_BHtvrGSfVidzFgY2lFJCo">CA Status 2nd</a>
+<a href="https://drive.google.com/open?id=17Zzf1DFKPIFyZNKTsrNw5MHbvJnzz1kVkFo9a8Ry-rQ">CA Status Higher</a>
+<a href="https://docs.google.com/spreadsheets/d/15XlQBLkrNULZf3CVxvWho1CwtrI35vzi/edit">Mid Sem B.Tech</a>
+<a href="https://docs.google.com/spreadsheets/d/1R2NXBZoZyA0cYoh9hXtP9CSDqjxsNbjV/edit">Mid Sem M.Tech</a>
 </div>
 </div>
 
 <!-- Reports -->
-<div class="dropdown">
-<button class="dropbtn">Reports</button>
+<div class="card">
+<button class="dropbtn">📊 Reports</button>
 <div class="dropdown-content">
-<a href="https://drive.google.com/drive/folders/10b1mQFZf8KMn84embfjkWrHCq9r43K3I" target="_blank">Result Analysis</a>
-<a href="https://drive.google.com/open?id=1ygz56o-23viMflUDtrjYcXr56-uMSvaR" target="_blank">COLAB</a>
-<a href="https://drive.google.com/open?id=1a1uJSGh4Ne7l_u949j_LMNh5ZfOsEbP4" target="_blank">Monthly Report</a>
+<a href="https://drive.google.com/drive/folders/10b1mQFZf8KMn84embfjkWrHCq9r43K3I">Result Analysis</a>
+<a href="https://drive.google.com/open?id=1ygz56o-23viMflUDtrjYcXr56-uMSvaR">COLAB</a>
+<a href="https://drive.google.com/open?id=1a1uJSGh4Ne7l_u949j_LMNh5ZfOsEbP4">Monthly Report</a>
+<a href="https://drive.google.com/open?id=1IWXzVTSWqS_0LF05Sh7oup6CUQnystk3">COLAB 2025-26</a>
 </div>
 </div>
 
 <!-- Academic Docs -->
-<div class="dropdown">
-<button class="dropbtn">Academic Documents</button>
+<div class="card">
+<button class="dropbtn">📄 Academic Docs</button>
 <div class="dropdown-content">
-<a href="https://drive.google.com/open?id=1-eOHtVR0eIKE_momrE0QdNiarorkxEB4" target="_blank">Course Allocation</a>
-<a href="https://drive.google.com/open?id=1Br_D5vgY_BOnBL8ou7YLzZZ4tuKZ4GrG" target="_blank">CO-PO Mapping</a>
-<a href="https://drive.google.com/open?id=1B07u_aPV-vO-80OoUPXvKomG38qe2slc" target="_blank">Syllabus</a>
-<a href="https://drive.google.com/open?id=1Xwv1l5LrDLxXCUshRtbegNCyt45G7hlt" target="_blank">Electives</a>
-<a href="https://drive.google.com/open?id=1O5LOgqchhClq-EyNy1hMK0QfXHd5bc62" target="_blank">Time Table</a>
+<a href="https://drive.google.com/open?id=1-eOHtVR0eIKE_momrE0QdNiarorkxEB4">Course Allocation</a>
+<a href="https://drive.google.com/open?id=1Br_D5vgY_BOnBL8ou7YLzZZ4tuKZ4GrG">CO-PO Mapping</a>
+<a href="https://drive.google.com/open?id=1B07u_aPV-vO-80OoUPXvKomG38qe2slc">Syllabus</a>
+<a href="https://drive.google.com/open?id=1Xwv1l5LrDLxXCUshRtbegNCyt45G7hlt">Electives</a>
+<a href="https://drive.google.com/open?id=1O5LOgqchhClq-EyNy1hMK0QfXHd5bc62">Time Table</a>
+<a href="https://drive.google.com/open?id=1AoAqOK9l7I3sgRT-0FE8E5iLisSiJJC3">Result Analysis</a>
 </div>
 </div>
 
 <!-- BoS -->
-<div class="dropdown">
-<button class="dropbtn">BoS Documents</button>
+<div class="card">
+<button class="dropbtn">📘 BoS</button>
 <div class="dropdown-content">
-<a href="https://drive.google.com/open?id=1wFhpSXOxSqLyruR90EhBK3VWinKM7nyJ" target="_blank">BoS 2025A</a>
-<a href="https://drive.google.com/open?id=1SgHIx2KUTZbQ53s4uDDAIB9W8nfbhCH2" target="_blank">BoS 2025B</a>
+<a href="https://drive.google.com/open?id=1wFhpSXOxSqLyruR90EhBK3VWinKM7nyJ">BoS 2025A</a>
+<a href="https://drive.google.com/open?id=1SgHIx2KUTZbQ53s4uDDAIB9W8nfbhCH2">BoS 2025B</a>
+<a href="https://drive.google.com/open?id=1ZPEH5ornkcjzPQR7PPYQMuk3XcpRvY7N">BoS First Year</a>
 </div>
 </div>
 
 <!-- OOA -->
-<div class="dropdown">
-<button class="dropbtn">OOA Documents</button>
+<div class="card">
+<button class="dropbtn">📂 OOA</button>
 <div class="dropdown-content">
-<a href="https://drive.google.com/open?id=1LoMod315ov_wDkFMvVbBMfme9BMoyBzP" target="_blank">CA Monitoring</a>
-<a href="https://drive.google.com/open?id=1D0ObdFlziEcFFtiZy230CGmFhSGGKbAR" target="_blank">BoS Docs</a>
+<a href="https://drive.google.com/open?id=1LoMod315ov_wDkFMvVbBMfme9BMoyBzP">CA Monitoring</a>
+<a href="https://drive.google.com/open?id=1D0ObdFlziEcFFtiZy230CGmFhSGGKbAR">BoS Docs</a>
 </div>
+</div>
+
+<!-- Common -->
+<div class="card">
+<button class="dropbtn">📑 Common</button>
+<div class="dropdown-content">
+<a href="https://drive.google.com/open?id=1DP12cw7I-ojgGXqnb0TWIg8QBJidoJPp">JIVA Files</a>
+<a href="https://drive.google.com/open?id=1pXSb4JIewQmjAoNtMIistrDsMuCjcmV1">Course Matrix</a>
+<a href="https://drive.google.com/open?id=1tMgVXyjffUIbRCsYOtlys2AV0U68NtCV">University Drive</a>
+<a href="https://drive.google.com/open?id=1yXRrsxSuqrq2a0Qd1GQDASNvR5hffDeS">Minutes of Meeting</a>
+<a href="https://drive.google.com/open?id=1WnKpfuNRIGX3PqLd_qZQdAqEl5iesZV2">Closure Reports</a>
+<a href="https://drive.google.com/open?id=1bJl-e0_FUQapjH-IIqYjxEKVLRWdKDjX">Readiness Reports</a>
+</div>
+</div>
+
+<!-- Charts -->
+<div class="card">
+<h3>📊 Attendance</h3>
+<canvas id="attendanceChart"></canvas>
+</div>
+
+<div class="card">
+<h3>📈 CA Status</h3>
+<canvas id="caChart"></canvas>
+</div>
+
 </div>
 
 <script>
-// Toggle dropdown
-document.querySelectorAll(".dropbtn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        btn.nextElementSibling.classList.toggle("active");
-    });
+document.querySelectorAll(".dropbtn").forEach(btn=>{
+ btn.onclick=()=>btn.nextElementSibling.classList.toggle("active");
 });
 
-// Dark mode
-document.getElementById("darkToggle").onclick = () => {
-    document.body.classList.toggle("dark");
+document.getElementById("darkToggle").onclick=()=>{
+ document.body.classList.toggle("dark");
 };
 
-// Search
-document.getElementById("searchInput").addEventListener("keyup", function() {
-    let val = this.value.toLowerCase();
-    document.querySelectorAll(".dropdown-content a").forEach(link => {
-        link.style.display = link.innerText.toLowerCase().includes(val) ? "block" : "none";
-    });
+document.getElementById("searchInput").onkeyup=function(){
+ let v=this.value.toLowerCase();
+ document.querySelectorAll("a").forEach(a=>{
+  a.style.display=a.innerText.toLowerCase().includes(v)?"block":"none";
+ });
+};
+
+new Chart(document.getElementById("attendanceChart"),{
+ type:"bar",
+ data:{labels:["Aero","Math","Physics"],datasets:[{data:[90,85,88]}]}
+});
+
+new Chart(document.getElementById("caChart"),{
+ type:"pie",
+ data:{labels:["Completed","Pending"],datasets:[{data:[70,30]}]}
 });
 </script>
 
