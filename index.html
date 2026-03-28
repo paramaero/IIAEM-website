@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERP Dashboard</title>
+<title>Department ERP Dashboard</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -12,36 +12,66 @@
 
 <header>
 <h1>Department ERP Dashboard</h1>
+<p>All Academic & Administrative Links</p>
 <button id="darkToggle">🌙</button>
 </header>
 
 <div class="controls">
-<input type="text" id="searchInput" placeholder="Search...">
+<input type="text" id="searchInput" placeholder="🔍 Search anything...">
 
 <select id="categoryFilter">
 <option value="all">All</option>
-<option value="academic">Academic</option>
+<option value="department">Department</option>
 <option value="erp">ERP</option>
-<option value="reports">Reports</option>
+<option value="academic">Academic</option>
+<option value="report">Reports</option>
+<option value="bos">BoS</option>
+<option value="ooa">OOA</option>
 </select>
 </div>
 
-<section class="dashboard" id="cardContainer">
+<section class="dashboard">
 
-<div class="card academic">
-<h3>Academic Docs</h3>
-<a href="#">Open</a>
-</div>
+<!-- Department -->
+<div class="card department"><h3>Department Drive</h3><a href="https://drive.google.com/drive/folders/1Dhb3ucHoX5hX4uIoVuGSp98Rvt4xtjvD" target="_blank">Open</a></div>
+<div class="card department"><h3>Faculty Profile</h3><a href="https://docs.google.com/spreadsheets/d/1VKUBx6vxHK1NHdC_artF6CeBkC39tSLQ/edit" target="_blank">Open</a></div>
+<div class="card department"><h3>Faculty Website</h3><a href="https://sites.google.com/jainuniversity.ac.in/iiaem-faculty/home" target="_blank">Open</a></div>
+<div class="card department"><h3>Student Website</h3><a href="https://sites.google.com/jainuniversity.ac.in/iiaem-students/home" target="_blank">Open</a></div>
 
-<div class="card erp">
-<h3>ERP System</h3>
-<a href="#">Open</a>
-</div>
+<!-- ERP -->
+<div class="card erp"><h3>ERP (2nd Sem)</h3><a href="https://erpfet.jainuniversity.ac.in/" target="_blank">Open</a></div>
+<div class="card erp"><h3>ERP (4/6/8 Sem)</h3><a href="https://jained.jgianveshana.com/" target="_blank">Open</a></div>
+<div class="card erp"><h3>IA Marks Entry</h3><a href="https://drive.google.com/open?id=1UZk8zfFwruBkOlykHps-dmvaAFr2smRQ" target="_blank">Open</a></div>
 
-<div class="card reports">
-<h3>Reports</h3>
-<a href="#">Open</a>
-</div>
+<!-- Academic -->
+<div class="card academic"><h3>Teachers Diary</h3><a href="https://drive.google.com/drive/folders/1LU0-9Dpi8WJZ0H1re0eY1ahyrFdKYWVt" target="_blank">Open</a></div>
+<div class="card academic"><h3>Assignment & MCQ</h3><a href="https://drive.google.com/open?id=1qY5Y2gfw0tGJAOwr48DnUOsmMacVs_gf" target="_blank">Open</a></div>
+<div class="card academic"><h3>IA Schedule</h3><a href="https://drive.google.com/open?id=19VXbS9a73CnPZoz009ufbrAFjJn1HvKa" target="_blank">Open</a></div>
+<div class="card academic"><h3>Remedial Classes</h3><a href="https://drive.google.com/open?id=14gqetKrTR2kLoQYzMF2JvnZcQUdfJx8i" target="_blank">Open</a></div>
+<div class="card academic"><h3>Slow Learners</h3><a href="https://drive.google.com/open?id=1sQKlXmBH3NWDXZdBdR4R_zjeKpbd741i" target="_blank">Open</a></div>
+<div class="card academic"><h3>Long Absentees</h3><a href="https://drive.google.com/open?id=1-_wLZApixZ9yjvVM_Cyc3lgklBpZIeNN" target="_blank">Open</a></div>
+<div class="card academic"><h3>CA Status (2nd)</h3><a href="https://drive.google.com/open?id=1MktqvYvYJMC192JjhEVT4_BHtvrGSfVidzFgY2lFJCo" target="_blank">Open</a></div>
+<div class="card academic"><h3>CA Status (4/6/8)</h3><a href="https://drive.google.com/open?id=17Zzf1DFKPIFyZNKTsrNw5MHbvJnzz1kVkFo9a8Ry-rQ" target="_blank">Open</a></div>
+
+<!-- Reports -->
+<div class="card report"><h3>Result Analysis</h3><a href="https://drive.google.com/drive/folders/10b1mQFZf8KMn84embfjkWrHCq9r43K3I" target="_blank">Open</a></div>
+<div class="card report"><h3>COLAB Submission</h3><a href="https://drive.google.com/open?id=1ygz56o-23viMflUDtrjYcXr56-uMSvaR" target="_blank">Open</a></div>
+<div class="card report"><h3>Monthly Report</h3><a href="https://drive.google.com/open?id=1a1uJSGh4Ne7l_u949j_LMNh5ZfOsEbP4" target="_blank">Open</a></div>
+
+<!-- Academic Docs -->
+<div class="card academic"><h3>Course Allocation</h3><a href="https://drive.google.com/open?id=1-eOHtVR0eIKE_momrE0QdNiarorkxEB4" target="_blank">Open</a></div>
+<div class="card academic"><h3>CO-PO Mapping</h3><a href="https://drive.google.com/open?id=1Br_D5vgY_BOnBL8ou7YLzZZ4tuKZ4GrG" target="_blank">Open</a></div>
+<div class="card academic"><h3>Syllabus</h3><a href="https://drive.google.com/open?id=1B07u_aPV-vO-80OoUPXvKomG38qe2slc" target="_blank">Open</a></div>
+<div class="card academic"><h3>Electives</h3><a href="https://drive.google.com/open?id=1Xwv1l5LrDLxXCUshRtbegNCyt45G7hlt" target="_blank">Open</a></div>
+<div class="card academic"><h3>Time Table</h3><a href="https://drive.google.com/open?id=1O5LOgqchhClq-EyNy1hMK0QfXHd5bc62" target="_blank">Open</a></div>
+
+<!-- BoS -->
+<div class="card bos"><h3>BoS 2025A</h3><a href="https://drive.google.com/open?id=1wFhpSXOxSqLyruR90EhBK3VWinKM7nyJ" target="_blank">Open</a></div>
+<div class="card bos"><h3>BoS 2025B</h3><a href="https://drive.google.com/open?id=1SgHIx2KUTZbQ53s4uDDAIB9W8nfbhCH2" target="_blank">Open</a></div>
+
+<!-- OOA -->
+<div class="card ooa"><h3>CA Monitoring</h3><a href="https://drive.google.com/open?id=1LoMod315ov_wDkFMvVbBMfme9BMoyBzP" target="_blank">Open</a></div>
+<div class="card ooa"><h3>BoS Docs</h3><a href="https://drive.google.com/open?id=1D0ObdFlziEcFFtiZy230CGmFhSGGKbAR" target="_blank">Open</a></div>
 
 </section>
 
