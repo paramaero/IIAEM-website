@@ -3,52 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Department Activity Monitoring</title>
+<title>ERP Dashboard</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
 <header>
-<h1>Department Activity Monitoring System</h1>
-<p>Welcome to the Department Portal</p>
+<h1>Department ERP Dashboard</h1>
+<button id="darkToggle">🌙</button>
 </header>
 
-<nav>
-<a href="#">Dashboard</a>
-<a href="#">Attendance</a>
-<a href="#">Faculty Workload</a>
-<a href="#">Research</a>
-<a href="#">Events</a>
-<a href="#">Login</a>
-</nav>
+<div class="controls">
+<input type="text" id="searchInput" placeholder="Search...">
 
-<section>
-
-<div class="card">
-<h2>Department Common Links</h2>
-<ul>
-<li><a href="https://drive.google.com/drive/folders/1Dhb3ucHoX5hX4uIoVuGSp98Rvt4xtjvD" target="_blank">Department Drive</a></li>
-<li><a href="https://docs.google.com/spreadsheets/d/1VKUBx6vxHK1NHdC_artF6CeBkC39tSLQ/edit" target="_blank">Faculty Profile</a></li>
-<li><a href="https://sites.google.com/jainuniversity.ac.in/iiaem-faculty/home" target="_blank">Faculty Website</a></li>
-<li><a href="https://sites.google.com/jainuniversity.ac.in/iiaem-students/home" target="_blank">Student Website</a></li>
-</ul>
+<select id="categoryFilter">
+<option value="all">All</option>
+<option value="academic">Academic</option>
+<option value="erp">ERP</option>
+<option value="reports">Reports</option>
+</select>
 </div>
 
-<div class="card">
-<h2>ERP & Marks Entry</h2>
-<ul>
-<li><a href="https://erpfet.jainuniversity.ac.in/" target="_blank">ERP (2nd Sem)</a></li>
-<li><a href="https://jained.jgianveshana.com/" target="_blank">ERP (4/6/8 Sem)</a></li>
-<li><a href="https://drive.google.com/open?id=1UZk8zfFwruBkOlykHps-dmvaAFr2smRQ" target="_blank">IA Marks Entry</a></li>
-</ul>
+<section class="dashboard" id="cardContainer">
+
+<div class="card academic">
+<h3>Academic Docs</h3>
+<a href="#">Open</a>
+</div>
+
+<div class="card erp">
+<h3>ERP System</h3>
+<a href="#">Open</a>
+</div>
+
+<div class="card reports">
+<h3>Reports</h3>
+<a href="#">Open</a>
 </div>
 
 </section>
 
-<footer>
-<p>© 2026 Department Activity Monitoring System</p>
-</footer>
+<script src="script.js"></script>
 
 </body>
 </html>
