@@ -24,7 +24,7 @@ document.getElementById("searchInput").addEventListener("keyup", function () {
    =========================== */
 
 // GOOGLE SHEETS API
-const sheetURL = "https://opensheet.elk.sh/18NVYml7AwOsIX6sOBA-HzzsESVdGnbF3ZsNIXID_DkE/Sheet1";
+const sheetURL = "https://opensheet.elk.sh/18NVYml7AwOsIX6sOBA-HzzsESVdGnbF3ZsNIXID_DkE/ASE";
 
 // Fetch Data
 fetch(sheetURL)
